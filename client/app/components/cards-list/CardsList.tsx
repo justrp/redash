@@ -2,17 +2,26 @@ import { includes, isEmpty } from "lodash";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import Input from "antd/lib/input";
-import Link from "@/components/Link";
+import LinkOrButton from "@/components/LinkOrButton";
 import EmptyState from "@/components/items-list/components/EmptyState";
 
 import "./CardsList.less";
 
-export interface CardsListItem {
+interface CardsListItemBase {
   title: string;
   imgSrc: string;
-  onClick?: () => void;
-  href?: string;
 }
+interface CardsListItemButton extends CardsListItemBase {
+  onClick: React.MouseEventHandler<HTMLElement>;
+  href?: never;
+}
+
+interface CardsListItemLink extends CardsListItemBase {
+  href: string;
+  onClick?: never;
+}
+
+export type CardsListItem = CardsListItemButton | CardsListItemLink;
 
 export interface CardsListProps {
   items?: CardsListItem[];
@@ -26,11 +35,10 @@ interface ListItemProps {
 
 function ListItem({ item, keySuffix }: ListItemProps) {
   return (
-    // @ts-expect-error TODO: refactor component
-    <Link key={`card${keySuffix}`} className="visual-card" onClick={item.onClick} href={item.href}>
+    <LinkOrButton key={`card${keySuffix}`} className="visual-card" onClick={item.onClick} href={item.href}>
       <img alt={item.title} src={item.imgSrc} />
       <h3>{item.title}</h3>
-    </Link>
+    </LinkOrButton>
   );
 }
 
