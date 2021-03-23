@@ -124,7 +124,7 @@ function QueryView(props) {
             !addingDescription &&
             !fullscreen && (
               <PlainButton className="label label-tag hidden-xs" onClick={() => setAddingDescription(true)}>
-                <i className="zmdi zmdi-plus m-r-5" />
+                <i className="zmdi zmdi-plus m-r-5" aria-hidden="true" />
                 Add description
               </PlainButton>
             )

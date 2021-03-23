@@ -23,8 +23,8 @@ function WidgetDropdownButton({ extraOptions, showDeleteOption, onDelete }) {
   return (
     <div className="widget-menu-regular">
       <Dropdown overlay={WidgetMenu} placement="bottomRight" trigger={["click"]}>
-        <PlainButton className="action p-l-15 p-r-15" data-test="WidgetDropdownButton">
-          <i className="zmdi zmdi-more-vert" />
+        <PlainButton className="action p-l-15 p-r-15" data-test="WidgetDropdownButton" aria-label="More options">
+          <i className="zmdi zmdi-more-vert" aria-hidden="true" />
         </PlainButton>
       </Dropdown>
     </div>
@@ -46,8 +46,13 @@ WidgetDropdownButton.defaultProps = {
 function WidgetDeleteButton({ onClick }) {
   return (
     <div className="widget-menu-remove">
-      <PlainButton className="action" title="Remove From Dashboard" onClick={onClick} data-test="WidgetDeleteButton">
-        <i className="zmdi zmdi-close" />
+      <PlainButton
+        className="action"
+        title="Remove From Dashboard"
+        onClick={onClick}
+        data-test="WidgetDeleteButton"
+        aria-label="Close">
+        <i className="zmdi zmdi-close" aria-hidden="true" />
       </PlainButton>
     </div>
   );
