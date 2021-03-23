@@ -19,6 +19,7 @@ import Switch from "antd/lib/switch";
 import Button from "antd/lib/button";
 
 import "./AlertDestinations.less";
+import PlainButton from "@/components/PlainButton";
 
 const USER_EMAIL_DEST_ID = -1;
 
@@ -46,7 +47,10 @@ function ListItem({ destination: { name, type }, user, unsubscribe }) {
       )}
       {canUnsubscribe && (
         <Tooltip title="Remove" mouseEnterDelay={0.5}>
-          <CloseOutlinedIcon className="remove-button" onClick={unsubscribe} />
+          <PlainButton className="remove-button" onClick={unsubscribe}>
+            {/* TODO: lacks visual feedback */}
+            <CloseOutlinedIcon />
+          </PlainButton>
         </Tooltip>
       )}
     </li>

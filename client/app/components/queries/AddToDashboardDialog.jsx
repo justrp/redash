@@ -13,6 +13,7 @@ import notification from "@/services/notification";
 import useSearchResults from "@/lib/hooks/useSearchResults";
 
 import "./add-to-dashboard-dialog.less";
+import PlainButton from "../PlainButton";
 
 function AddToDashboardDialog({ dialog, visualization }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -89,7 +90,9 @@ function AddToDashboardDialog({ dialog, visualization }) {
           value={searchTerm}
           onChange={event => setSearchTerm(event.target.value)}
           suffix={
-            <CloseOutlinedIcon className={searchTerm === "" ? "hidden" : null} onClick={() => setSearchTerm("")} />
+            <PlainButton className={searchTerm === "" ? "hidden" : null} onClick={() => setSearchTerm("")}>
+              <CloseOutlinedIcon />
+            </PlainButton>
           }
         />
       )}
@@ -104,7 +107,15 @@ function AddToDashboardDialog({ dialog, visualization }) {
           renderItem={d => (
             <List.Item
               key={`dashboard-${d.id}`}
-              actions={selectedDashboard ? [<CloseOutlinedIcon onClick={() => setSelectedDashboard(null)} />] : []}
+              actions={
+                selectedDashboard
+                  ? [
+                      <PlainButton onClick={() => setSelectedDashboard(null)}>
+                        <CloseOutlinedIcon />
+                      </PlainButton>,
+                    ]
+                  : []
+              }
               onClick={selectedDashboard ? null : () => setSelectedDashboard(d)}>
               <div className="add-to-dashboard-dialog-item-content">
                 {d.name}
