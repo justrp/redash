@@ -1,7 +1,7 @@
 import React from "react";
 import Button, { ButtonProps as AntdButtonProps } from "antd/lib/button";
 
-interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "role"> {
+export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "role"> {
   href: string;
 }
 
